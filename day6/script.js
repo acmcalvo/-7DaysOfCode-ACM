@@ -38,3 +38,31 @@ function mostrarLista() {
 
     document.getElementById("listaDeCompras").innerHTML = listaHTML;
 }
+
+// Función para eliminar un alimento de la lista
+function eliminarAlimento() {
+    let alimento = document.getElementById("alimentoEliminar").value;
+    let categoria = document.getElementById("categoriaEliminar").value;
+
+    // Validar que se ha ingresado un alimento
+    if (alimento.trim() === "") {
+        alert("Por favor, ingresa un alimento para eliminar.");
+        return;
+    }
+
+    let index = listaDeCompras[categoria].indexOf(alimento);
+
+    if (index !== -1) {
+        listaDeCompras[categoria].splice(index, 1);
+        alert(`${alimento} ha sido eliminado de la categoría ${categoria}.`);
+    } else {
+        alert(`¡No fue posible encontrar ${alimento} en la categoría ${categoria}!`);
+    }
+
+    // Limpiar el campo de entrada
+    document.getElementById("alimentoEliminar").value = "";
+    mostrarLista();
+}
+
+
+
